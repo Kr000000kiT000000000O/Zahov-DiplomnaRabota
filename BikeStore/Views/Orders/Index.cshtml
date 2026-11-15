@@ -1,0 +1,17 @@
+@model IReadOnlyList<BikeStore.Models.Order>
+@{ ViewData["Title"] = "Поръчки"; }
+<div class="page-title"><p class="eyebrow">ПРОФИЛ</p><h1>Поръчки</h1></div>
+@if(Model.Count == 0)
+{
+    <p>Все още няма поръчки. Създаването на поръчки е планирано за следващ етап.</p>
+}
+else
+{
+    <table class="data"><thead><tr><th>№</th><th>Дата</th><th>Статус</th><th>Сума</th></tr></thead><tbody>
+    @foreach (var order in Model)
+    {
+        <tr><td>@order.Id</td><td>@order.CreatedAtUtc.ToLocalTime().ToString("dd.MM.yyyy")</td>
+        <td>@order.Status</td><td>@order.TotalAmount.ToString("N2") €</td></tr>
+    }
+    </tbody></table>
+}

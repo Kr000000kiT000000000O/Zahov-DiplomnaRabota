@@ -1,0 +1,16 @@
+@model BikeStore.Models.Bicycle
+@{ ViewData["Title"] = Model.Name; }
+<div class="page-title"><p class="eyebrow">@Model.Category.Name / @Model.Brand</p><h1>@Model.Name</h1></div>
+<div class="detail">
+    <div class="detail-image" aria-hidden="true">🚲</div>
+    <div>
+        <h2>@Model.Brand @Model.Name</h2>
+        <p>@Model.Description</p>
+        <p><strong>Цена за покупка:</strong> @Model.SalePrice.ToString("N2") €</p>
+        <p><strong>Цена за наем на ден:</strong> @Model.DailyRentalPrice.ToString("N2") €</p>
+        <p><strong>Наличност:</strong> @Model.StockQuantity бр.</p>
+        <p><strong>Отдава се под наем:</strong> @(Model.CanBeRented ? "Да" : "Не")</p>
+        <p class="small">Формите за покупка и резервация ще бъдат добавени в следващия етап.</p>
+        <a asp-action="Index">← Обратно към каталога</a>
+    </div>
+</div>

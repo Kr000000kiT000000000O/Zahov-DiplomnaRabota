@@ -1,0 +1,15 @@
+@model IReadOnlyList<BikeStore.Models.Bicycle>
+@{ ViewData["Title"] = "Наемане"; }
+<div class="page-title"><p class="eyebrow">BIKESTORE / НАЕМ</p><h1>Велосипеди под наем</h1><p>Избрани модели с примерни дневни цени.</p></div>
+<div class="cards">
+@foreach (var bicycle in Model)
+{
+    <article class="product">
+        <div class="product-visual" aria-hidden="true">🚲</div>
+        <h2>@bicycle.Brand @bicycle.Name</h2>
+        <p class="price">@bicycle.DailyRentalPrice.ToString("N2") € / ден</p>
+        <a asp-controller="Bicycles" asp-action="Details" asp-route-id="@bicycle.Id">Детайли →</a>
+    </article>
+}
+</div>
+<p class="small">Изборът на дати, проверката за наличност и записът на резервация са планирани, но още не са реализирани.</p>

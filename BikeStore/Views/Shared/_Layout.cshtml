@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] – BikeStore</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="nav container" aria-label="Основна навигация">
+            <a asp-controller="Home" asp-action="Index" class="logo">BIKE<span>STORE</span></a>
+            <div class="navlinks">
+                <a asp-controller="Bicycles" asp-action="Index">Каталог</a>
+                <a asp-controller="Rentals" asp-action="Index">Наемане</a>
+                <a asp-controller="Orders" asp-action="Index">Моите поръчки</a>
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    <a asp-controller="Admin" asp-action="Index">Служебен панел</a>
+                }
+            </div>
+            <div class="authlinks">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                        <button class="linkbutton" type="submit">Изход</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Login">Вход</a>
+                    <a asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+                }
+            </div>
+        </nav>
+    </header>
+    <main class="container">@RenderBody()</main>
+    <footer class="container footer">BikeStore · Дипломен проект · Етап 1</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

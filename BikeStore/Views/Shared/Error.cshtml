@@ -1,0 +1,5 @@
+@model BikeStore.Models.ErrorViewModel
+@{ ViewData["Title"] = "Грешка"; }
+<h1>Възникна грешка.</h1>
+<p>Моля, опитайте отново.</p>
+@if(Model.ShowRequestId) { <p class="small">Request ID: <code>@Model.RequestId</code></p> }
