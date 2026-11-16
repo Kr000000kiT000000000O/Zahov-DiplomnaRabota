@@ -36,8 +36,6 @@ public static class DbSeeder
             await db.SaveChangesAsync();
         }
 
-        // Никога не записвайте администраторска парола в GitHub.
-        // Конфигурирайте Bootstrapping:AdminEmail и Bootstrapping:AdminPassword през User Secrets.
         var email = config["Bootstrapping:AdminEmail"];
         var password = config["Bootstrapping:AdminPassword"];
         if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password))

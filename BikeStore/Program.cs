@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = false; // локална демонстрация; production: true + email provider
+    options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequiredLength = 8;
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequireDigit = true;
@@ -22,7 +22,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages(); // стандартните Identity страници за регистрация и вход
+builder.Services.AddRazorPages();
 builder.Services.AddScoped<IBicycleCatalogService, BicycleCatalogService>();
 builder.Services.AddScoped<IRentalPricingService, RentalPricingService>();
 
@@ -42,8 +42,6 @@ app.UseAuthorization();
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-// Първо изпълнете Add-Migration InitialCreate и Update-Database (виж README).
-// След това при старт се добавят категории, велосипеди и трите роли.
 using (var scope = app.Services.CreateScope())
 {
     await DbSeeder.SeedAsync(scope.ServiceProvider, app.Configuration);

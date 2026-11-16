@@ -8,5 +8,4 @@ public sealed class RentalsController : Controller
     public RentalsController(IBicycleCatalogService catalog) => _catalog = catalog;
     public async Task<IActionResult> Index(CancellationToken ct) =>
         View(await _catalog.GetRentableAsync(ct));
-    // Планирано за следващ етап: резервация с проверка за припокриващи се периоди.
 }

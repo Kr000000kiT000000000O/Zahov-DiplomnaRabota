@@ -26,5 +26,4 @@ public sealed class OrdersController : Controller
         }
         return View(await query.OrderByDescending(x => x.CreatedAtUtc).ToListAsync(ct));
     }
-    // Планирано за следващ етап: количка и плащане (не е реализирано).
 }

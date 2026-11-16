@@ -16,5 +16,4 @@ public sealed class AdminController : Controller
         ViewData["RentalCount"] = await _db.RentalReservations.CountAsync(ct);
         return View();
     }
-    // CRUD и обработка на поръчки/резервации са за следващ етап.
 }
