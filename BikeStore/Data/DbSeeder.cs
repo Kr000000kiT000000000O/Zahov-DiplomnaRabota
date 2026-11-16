@@ -11,6 +11,8 @@ public static class DbSeeder
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
+        await db.Database.EnsureCreatedAsync();
+
         foreach (var role in new[] { "Client", "Employee", "Admin" })
             if (!await roleManager.RoleExistsAsync(role))
                 await roleManager.CreateAsync(new IdentityRole(role));
